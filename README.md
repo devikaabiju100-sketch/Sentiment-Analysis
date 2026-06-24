@@ -1,191 +1,155 @@
-# 🤖 Sentiment Analysis Project
+# 🤖 Sentiment Analysis System
 
-A complete machine learning application that analyzes text sentiment in real-time using a trained classification model and provides a beautiful web interface.
+A complete, production-ready sentiment analysis application that combines machine learning model training with a beautiful Flask web interface.
 
-## ✨ Features
+## 📋 Features
 
-- **AI-Powered Sentiment Detection**: Classifies text as Positive, Negative, or Neutral
-- **Machine Learning Model**: Uses TF-IDF vectorization with Multinomial Naive Bayes
-- **Web Interface**: Modern, responsive Flask web application
-- **Real-time Analysis**: Instant sentiment predictions with confidence scores
-- **Single-File Architecture**: All functionality in one easy-to-run Python file
-- **Auto-Training**: Automatically trains on sample data if no model exists
-
-## 🛠️ Tech Stack
-
-- **Backend**: Flask
-- **ML Framework**: Scikit-learn
-- **Data Processing**: Pandas, NumPy
-- **Frontend**: HTML5, CSS3
-- **Language**: Python 3.8+
-
-## 📋 Requirements
-
-- Python 3.8 or higher
-- pip (Python package manager)
+✅ **Complete in One File** - All functionality in a single Python file
+✅ **Automatic Model Training** - Trains on sample data on startup
+✅ **TF-IDF Vectorization** - Advanced text feature extraction
+✅ **Multinomial Naive Bayes** - Proven ML algorithm for text classification
+✅ **Beautiful Web Interface** - Modern, responsive Flask UI with animations
+✅ **Real-time Predictions** - Instant sentiment analysis with confidence scores
+✅ **Visual Confidence Meter** - Progress bar showing prediction certainty
+✅ **No External Dataset Required** - Works out of the box with sample data
 
 ## 🚀 Quick Start
 
-### 1. Clone the Repository
+### Installation
+
 ```bash
+# Clone the repository
 git clone https://github.com/devikaabiju100-sketch/Sentiment-Analysis.git
 cd Sentiment-Analysis
-```
 
-### 2. Install Dependencies
-```bash
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 3. Run the Application
+### Running the Application
+
 ```bash
-python sentiment_analysis_complete.py
+python sentiment_analysis_app.py
 ```
 
-### 4. Open in Browser
-Navigate to: `http://localhost:5000`
-
-## 📖 Usage
-
-1. Enter any text in the textarea (product review, comment, feedback, etc.)
-2. Click "Analyze Sentiment"
-3. View the predicted sentiment with confidence score
-4. Emoji indicators show the sentiment at a glance:
-   - 😊 Positive
-   - 😞 Negative
-   - 😐 Neutral
-
-## 📁 Project Structure
-
+Then open your browser and navigate to:
 ```
-Sentiment-Analysis/
-├── sentiment_analysis_complete.py  # Main application file
-├── requirements.txt                # Project dependencies
-├── README.md                       # This file
-├── .gitignore                      # Git ignore rules
-├── sentiment_model.pkl             # Trained model (auto-generated)
-└── vectorizer.pkl                  # TF-IDF vectorizer (auto-generated)
+http://localhost:5000
 ```
 
-## 🎯 How It Works
+## 📊 How It Works
 
-### Model Training
-- Initializes with 20 sample reviews for demonstration
-- Uses TF-IDF (Term Frequency-Inverse Document Frequency) vectorization
-- Trains a Multinomial Naive Bayes classifier
-- Achieves ~95% accuracy on training data
-- Automatically saves trained model and vectorizer
+1. **Data Preparation**: The app creates a sample dataset with positive and negative movie reviews
+2. **Text Vectorization**: Reviews are converted to numerical features using TF-IDF
+3. **Model Training**: Multinomial Naive Bayes classifier is trained on the data
+4. **Evaluation**: Model accuracy is calculated on test data
+5. **Web Interface**: User can input text through a beautiful web interface
+6. **Prediction**: The trained model predicts sentiment (Positive/Negative/Neutral) with confidence scores
 
-### Prediction Pipeline
-1. User input text is received via web form
-2. Text is vectorized using the trained TF-IDF vectorizer
-3. Model predicts sentiment class (Positive/Negative/Neutral)
-4. Confidence score is calculated from prediction probabilities
-5. Results are displayed with visual indicators
+## 🛠️ Tech Stack
 
-## 📊 Sample Training Data
+- **Python 3.8+**
+- **Flask** - Web framework
+- **Scikit-learn** - Machine learning library
+- **Pandas** - Data manipulation
+- **NumPy** - Numerical computing
 
-The model includes sample reviews for demonstration:
-- ✅ Positive reviews (e.g., "This movie is absolutely fantastic!")
-- ❌ Negative reviews (e.g., "Terrible film, waste of time.")
-- 😐 Neutral reviews (e.g., "It was okay, nothing special.")
+## 📈 Model Details
+
+- **Algorithm**: Multinomial Naive Bayes
+- **Vectorization**: TF-IDF (Term Frequency-Inverse Document Frequency)
+- **Features**: 10,000 max features
+- **Train/Test Split**: 80/20
+- **Accuracy**: ~95% (on sample data)
+
+## 🎨 User Interface
+
+The web interface includes:
+- Clean, modern design with gradient backgrounds
+- Smooth animations and transitions
+- Large textarea for text input
+- Sentiment result with emoji indicators
+- Visual confidence meter with percentage
+- Model accuracy badge
+- Responsive design for mobile devices
+
+## 💡 Example Usage
+
+1. Open the web interface
+2. Enter a review or comment:
+   - "This movie was absolutely fantastic! Loved every minute."
+3. Click "Analyze Sentiment" button
+4. View the prediction:
+   - **Result**: 😊 Positive Sentiment
+   - **Confidence**: 95.45%
 
 ## 🔧 Customization
 
-### Train with Your Own Dataset
-
-Modify the `train_model()` function in `sentiment_analysis_complete.py`:
+To use your own dataset:
 
 ```python
-def train_model(sample_reviews=None):
-    if sample_reviews is None:
-        # Load your CSV file
-        data = pd.read_csv("path/to/your/dataset.csv")
-    # ... rest of training code
+# Modify the train() call in sentiment_analysis_app.py
+data = pd.read_csv('your_dataset.csv')  # with 'review' and 'sentiment' columns
+sentiment_analyzer.train(data=data)
 ```
 
-Your CSV should have columns: `review` and `sentiment`
+## 📝 Dataset Format
 
-### Adjust Model Parameters
+If using a custom dataset, it should have two columns:
+- `review`: The text content
+- `sentiment`: Label (positive/negative or similar)
 
-In the `train_model()` function, you can modify:
-- `max_features`: Number of features for TF-IDF (default: 5000)
-- `ngram_range`: Word n-grams to use (default: (1, 2))
-- `test_size`: Train-test split ratio (default: 0.2)
-
-## 📈 Model Performance
-
+```csv
+review,sentiment
+"This movie was great!",positive
+"Terrible experience.",negative
 ```
-Model Accuracy: ~95% (on sample data)
-Training Time: < 1 second
-Prediction Time: < 100ms per review
-```
-
-## 🎨 UI Features
-
-- **Gradient Background**: Purple gradient color scheme
-- **Responsive Design**: Works on desktop and mobile
-- **Real-time Feedback**: Instant visual feedback on analysis
-- **Smooth Animations**: Button hover effects and transitions
-- **Clear Results**: Large, easy-to-read confidence scores
-
-## 🔐 Security
-
-- Input validation on all text submissions
-- No external API calls or data transmission
-- All processing happens locally
-- No user data is stored or logged
 
 ## 🐛 Troubleshooting
 
-### Port Already in Use
-If port 5000 is in use, modify the last line:
-```python
-app.run(debug=True, port=5001)  # Use different port
-```
-
-### Model Not Loading
-Delete the pickle files and restart:
+**Port already in use**:
 ```bash
-rm sentiment_model.pkl vectorizer.pkl
-python sentiment_analysis_complete.py
+# Change the port in sentiment_analysis_app.py
+app.run(debug=True, host='0.0.0.0', port=5001)
 ```
 
-### Dependencies Error
-Reinstall all requirements:
+**Dependencies not installing**:
 ```bash
-pip install --upgrade -r requirements.txt
+pip install --upgrade pip
+pip install -r requirements.txt --force-reinstall
 ```
 
-## 📚 Learning Resources
+## 📚 Project Structure
 
-- [Scikit-learn Documentation](https://scikit-learn.org/)
+```
+Sentiment-Analysis/
+├── sentiment_analysis_app.py  # Main application
+├── requirements.txt            # Python dependencies
+└── README.md                   # This file
+```
+
+## 🎓 Learning Resources
+
 - [Flask Documentation](https://flask.palletsprojects.com/)
-- [TF-IDF Explanation](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)
-- [Naive Bayes Classifier](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)
+- [Scikit-learn NLP Guide](https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction)
+- [Naive Bayes Classification](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)
+- [TF-IDF Vectorization](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)
 
-## 🤝 Contributing
-
-Feel free to fork this project and submit pull requests for improvements!
-
-## 📝 License
+## 📄 License
 
 This project is open source and available under the MIT License.
 
 ## 👨‍💻 Author
 
-Created by [devikaabiju100-sketch](https://github.com/devikaabiju100-sketch)
+Created as a demonstration of combining Machine Learning with Web Development.
 
-## 🙌 Acknowledgments
+## 🤝 Contributing
 
-- Original multi-file implementation by [sanushasanthosh50](https://github.com/sanushasanthosh50)
-- Consolidated into single-file architecture for easier deployment
-- Built with ❤️ for sentiment analysis enthusiasts
-
-## 📞 Support
-
-For issues, questions, or suggestions, please open an issue on GitHub.
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest improvements
+- Submit pull requests
 
 ---
 
-**Made with ❤️ | [View on GitHub](https://github.com/devikaabiju100-sketch/Sentiment-Analysis)**
+**Happy Analyzing! 🚀**
