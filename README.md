@@ -177,8 +177,6 @@ This project is open source and available under the MIT License.
 Created by [devikaabiju100-sketch](https://github.com/devikaabiju100-sketch)
 
 ## 🙌 Acknowledgments
-
-- Original multi-file implementation by [sanushasanthosh50](https://github.com/sanushasanthosh50)
 - Consolidated into single-file architecture for easier deployment
 - Built with ❤️ for sentiment analysis enthusiasts
 
